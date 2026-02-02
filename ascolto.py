@@ -7,6 +7,7 @@ server_socket.bind((host, port))
 server_socket.listen(1)
 f = open('logfile.txt', 'w')
 f.write(f"Server listening on {host} : {port}\n")
+richiesta = 'SHUTDOWN'
 for i in range(1000):
     conn, addr = server_socket.accept() #accept è un medoto
     f.write(f"Connected by {addr}\n")
