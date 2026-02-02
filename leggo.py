@@ -1,6 +1,6 @@
-import sys
+#import sys
 #nomefile = 'esempio.txt' #qui ho provato a nominare il nome direttmente E FUNZIONA
-nomefile=sys.argv[1]
+nomefile= "logfile.txt"
 try:
     f = open(nomefile, "r", encoding="utf-8") #QUI HO DOVUTO AGGIUNGERE UTF-8 PER UNA CORRETTA INTERPRETAZIONE DEI CARATTERI
     righe = f.readlines()
