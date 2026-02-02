@@ -7,7 +7,7 @@ server_socket.bind((host, port))
 server_socket.listen(1)
 f = open('logfile.txt', 'w')
 f.write(f"Server listening on {host} : {port}\n")
-for i in range(6):
+for i in range(1000):
     conn, addr = server_socket.accept() #accept è un medoto
     f.write(f"Connected by {addr}\n")
     try:
@@ -16,12 +16,12 @@ for i in range(6):
             if not data:
                 break
             richiesta = data.decode()
-            if richiesta == 'SHUTDOWN':
+            if richiesta == 'SHUTDOWN': #qui esce dal ciclo while, ma non dal try
                 break
             risposta = f"Ho ricevuto il tuo messaggio: {richiesta}\n"
             f.write(risposta)
             conn.sendall(risposta.encode())
-        if richiesta == 'SHUTDOWN':
+        if richiesta == 'SHUTDOWN': #qua esce dal FOR
             break
     finally:
         conn.close()
