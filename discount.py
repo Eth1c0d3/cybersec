@@ -1,50 +1,63 @@
-def main():
-def dirOnly(istanza):
-    metodi = dir(istanza)
-    risultato = []
-    for m in metodi:
-        if not m.startwith('_'):
-            risultato.append(m)
-    return(risultato)
-f = open('lista_con_sconto.txt')
-with open('lista_con_sconto.txt', 'r') as file:
-    lines = file.readlines()
-    print(lines)
-prices = []
-isPet = []
-sconto = 0.0
-with open('lista_con_sconto.txt', 'r') as file:
-    righe = file.readlines()
-    for riga in righe:
-        campi = riga.split()
-        prices.append(float(campi[0]))
-        if campi[1].upper() == 'Y':
-            isPet.append(True)
-        else:
-            isPet.append(False)
-nItems = len(prices)
-if (nItems) == len(isPet):
-    sconto = discount(prices, isPet, nItems)
-print(sconto)  
-pro_insieme = [False, False, False, True, False]
-index = 0
-for value in pro_insieme:
-    print(index, value)
-    index = index + 1
-    def discount(prezzi, animale, numero):
+def discount(prezzi, animale, numero):
     risultato = 0.0
     base_sconto = 0.0
     numero_animali = 0
-    if len(set(animale)) == 2: #verifico la presenza di articoli e animali
-        index = 0
-        for value in animale:
-            if value:
-                numero_animali = numero_animali + 1
-            else:
-                base_sconto = base_sconto + prezzi[index]
-            index = index + 1
-        if (numero - numero_animali) >= 5: #verifico la soglia 5 articoli
-            risultato = base_sconto * 0.2
+
+    # Verifico che ci siano sia animali che articoli non animali
+    if len(set(animale)) == 2:
+        for index, value in enumerate(animale):
+            if value:   # è un animale
+                numero_animali += 1
+            else:       # articolo non animale
+                base_sconto += prezzi[index]
+
+        # Verifico che ci siano almeno 5 articoli non animali
+        if (numero - numero_animali) >= 5:
+            risultato = base_sconto * 0.20
+
     return risultato
+
+
+def main():
+
+    # Funzione corretta: start**s**with
+    def dirOnly(istanza):
+        metodi = dir(istanza)
+        risultato = []
+        for m in metodi:
+            if not m.startswith('_'):
+                risultato.append(m)
+        return risultato
+
+    # Lettura file
+    prices = []
+    isPet = []
+
+    with open('lista_con_sconto.txt', 'r') as file:
+        righe = file.readlines()
+        print("Contenuto del file:", righe)
+
+        for riga in righe:
+            campi = riga.split()
+            prices.append(float(campi[0]))
+            isPet.append(campi[1].upper() == 'Y')
+
+    nItems = len(prices)
+
+    # Calcolo sconto
+    if nItems == len(isPet):
+        sconto = discount(prices, isPet, nItems)
+    else:
+        sconto = 0.0
+
+    print("Sconto calcolato:", round(sconto, 2), "euro")
+
+    # Stampa di prova (come nel tuo codice)
+    pro_insieme = [False, False, False, True, False]
+    for index, value in enumerate(pro_insieme):
+        print(index, value)
+
+
 if __name__ == "__main__":
     main()
+
