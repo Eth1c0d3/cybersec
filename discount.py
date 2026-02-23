@@ -19,8 +19,7 @@ def discount(prezzi, animale, numero):
 
 
 def main():
-
-    # Funzione corretta: start**s**with
+    
     def dirOnly(istanza):
         metodi = dir(istanza)
         risultato = []
