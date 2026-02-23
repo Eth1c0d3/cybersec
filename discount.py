@@ -19,7 +19,7 @@ def discount(prezzi, animale, numero):
 
 
 def main():
-    
+
     def dirOnly(istanza):
         metodi = dir(istanza)
         risultato = []
@@ -28,10 +28,10 @@ def main():
                 risultato.append(m)
         return risultato
 
-    # Lettura file
     prices = []
     isPet = []
 
+    # Lettura del file lista_con_sconto.txt
     with open('lista_con_sconto.txt', 'r') as file:
         righe = file.readlines()
         print("Contenuto del file:", righe)
@@ -51,7 +51,7 @@ def main():
 
     print("Sconto calcolato:", round(sconto, 2), "euro")
 
-    # Stampa di prova (come nel tuo codice)
+    # Stampa di prova
     pro_insieme = [False, False, False, True, False]
     for index, value in enumerate(pro_insieme):
         print(index, value)
@@ -59,4 +59,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
