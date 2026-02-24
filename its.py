@@ -30,7 +30,9 @@ class Tutor(Persona):
     def appendToRegistro(self, allievo):
         self._registro.append(allievo)
 
-    def stampaRegistro(self): 
+    def stampaRegistro(self):
+        print(f"Tutor: {self._nome} {self._cognome}") 
+        print(f"Numero iscritti: {len(self._registro)}")
         print("Registro presenze:") 
         for a in self._registro: 
             print(f"- {a._nome} {a._cognome}: {a._orePresenza} ore")
@@ -57,7 +59,6 @@ lista_allievi = [
     ("Mirko", "Fabrizi"),
     ("Daniele", "Gagliardi"),
     ("Matteo", "Galeazzi"),
-    ("Alessio", "Gennari"),
     ("Nethudula", "Jayawardana"),
     ("Adam", "Madit"),
     ("Federico", "Perotti"),
