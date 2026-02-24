@@ -30,8 +30,10 @@ class Tutor(Persona): #anche il tutor è una Persona
     def appendToRegistro(self, allievo): #aggiunge un allievo alla lista
         self._registro.append(allievo)
 
-    def stampaRegistro(self):
+    def stampaRegistro(self, docente=None):
         print(f"Tutor: {self._nome} {self._cognome}") #stampa il nome del tutor usando una f-string
+        if docente is not None: #esegue il blocco solo se è stato passato un docente alla funzione
+            print(f"Docente: {docente._nome} {docente._cognome}")
         print(f"Numero iscritti: {len(self._registro)}") #conta quanti allievi ci sono nel  registro
         print("Registro presenze:") 
         for a in self._registro: #accede agli attributi di ogni allievo
@@ -46,6 +48,7 @@ class Corso:
 
 program = Corso("Cyber Defence & System Administator", "2025-2027", "24/11/2025") #creo un oggetto Corso
 tu = Tutor("Cecilia", "Giacchella", program) #creo un tutor associato al corso
+doc = Docente("Andrea", "Ribuoli", "Introduzione alla programmazione e cybersecurity", "Ingegniere")
 
 lista_allievi = [    #è una lista di tuple, ogni tupla è (nome, cognome)
     ("Matteo", "Galeazzi"),
@@ -80,4 +83,4 @@ for nome, cognome in lista_allievi: #ciclo che scorre ogni tupla #ad ogni iteraz
     tu.appendToRegistro(a) #aggiunge l'allievo (con le ore già settate) al registro del tutor
 
 # Stampa registro 
-tu.stampaRegistro()
+tu.stampaRegistro(doc) #qua ho richiamato la stampa del registro e del docente, doc vine passato al metodo
