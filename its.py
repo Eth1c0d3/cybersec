@@ -1,40 +1,40 @@
-import random
+import random #carica il modulo random
 
-class Persona:
-    def __init__(self, nome, cognome):
-        self._nome = nome
-        self._cognome = cognome
+class Persona: #definisce una nuova classe chimata Persona
+    def __init__(self, nome, cognome): #questo è il costruttore, vienen eseguito quando crei una nuova Persona
+        self._nome = nome #salva il parametro nome come attributo dell'oggetto
+        self._cognome = cognome #qua vale lo stesso della riga sopra
 
-class Docente(Persona):
+class Docente(Persona): #Docente estende Persona (ereditarietà)
     def __init__(self, nome, cognome, materia, titolo):
-        super().__init__(nome, cognome)
-        self._materia = materia
-        self._titolo = titolo
-        self._corsi = []
+        super().__init__(nome, cognome) #chiama il costruttore di persona per inizializzare nome e cognome
+        self._materia = materia #attributi specifici del docente
+        self._titolo = titolo #uguale alla riga sopra
+        self._corsi = [] #lista vuota, potresti usarla per memorizzare i corsi tenuti
 
-class Allievo(Persona):
+class Allievo(Persona): #anche Allievo eredita da Persona
     def __init__(self, nome, cognome):
-        super().__init__(nome, cognome)
-        self._corso = None
-        self._orePresenza = 0
+        super().__init__(nome, cognome) #inizializza nome e cognome come in Persona
+        self._corso = None #Per ora l'allievo non ha un corso associato
+        self._orePresenza = 0 #ore di presenza iniziali a 0
 
-    def setOrePresenza(self, ore):
-        self._orePresenza = ore
+    def setOrePresenza(self, ore): #metodo per impostare le ore
+        self._orePresenza = ore #assegan il valore passato al campo _orePresenza
 
-class Tutor(Persona):
+class Tutor(Persona): #anche il tutor è una Persona
     def __init__(self, nome, cognome, corso):
-        super().__init__(nome, cognome)
-        self._corso = corso
-        self._registro = []
+        super().__init__(nome, cognome) 
+        self._corso = corso #associa un oggetto Corso al tutor
+        self._registro = [] #lista che conterrà gli allievi
 
-    def appendToRegistro(self, allievo):
+    def appendToRegistro(self, allievo): #aggiunge un allievo alla lista
         self._registro.append(allievo)
 
     def stampaRegistro(self):
-        print(f"Tutor: {self._nome} {self._cognome}") 
-        print(f"Numero iscritti: {len(self._registro)}")
+        print(f"Tutor: {self._nome} {self._cognome}") #stampa il nome del tutor usando una f-string
+        print(f"Numero iscritti: {len(self._registro)}") #conta quanti allievi ci sono nel  registro
         print("Registro presenze:") 
-        for a in self._registro: 
+        for a in self._registro: #accede agli attributi di ogni allievo
             print(f"- {a._nome} {a._cognome}: {a._orePresenza} ore")
 
 class Corso:
@@ -44,10 +44,10 @@ class Corso:
         self._dataInizio = dataInizio
 
 
-program = Corso("Cyber Defence & System Administator", "2025-2027", "24/11/2025")
-tu = Tutor("Cecilia", "Giacchella", program)
+program = Corso("Cyber Defence & System Administator", "2025-2027", "24/11/2025") #creo un oggetto Corso
+tu = Tutor("Cecilia", "Giacchella", program) #creo un tutor associato al corso
 
-lista_allievi = [
+lista_allievi = [    #è una lista di tuple, ogni tupla è (nome, cognome)
     ("Matteo", "Galeazzi"),
     ("Monica", "Fiocchi"),
     ("Serena", "Di Gianvito"),
@@ -74,10 +74,10 @@ lista_allievi = [
 ]
 
 # Aggiunta allievi al registro 
-for nome, cognome in lista_allievi: 
-    a = Allievo(nome, cognome)
-    a.setOrePresenza(random.randint(10, 40)) #qui sto assegnando le ore in modo automatico
-    tu.appendToRegistro(a)
+for nome, cognome in lista_allievi: #ciclo che scorre ogni tupla #ad ogni iterazione:
+    a = Allievo(nome, cognome) #genera un numero intero casuale tra 10 e 40 (estremi inclusi)
+    a.setOrePresenza(random.randint(10, 40)) #la parte con a.setOre.... assegna quel numero come ore di presenza #qui sto assegnando le ore in modo automatico (la parte con random randinit)
+    tu.appendToRegistro(a) #aggiunge l'allievo (con le ore già settate) al registro del tutor
 
 # Stampa registro 
 tu.stampaRegistro()
