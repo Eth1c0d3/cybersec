@@ -34,7 +34,7 @@ class Tutor(Persona): #anche il tutor è una Persona
         print(f"Tutor: {self._nome} {self._cognome}") #stampa il nome del tutor usando una f-string
         if docente is not None: #esegue il blocco solo se è stato passato un docente alla funzione
             print(f"Docente: {docente._nome} {docente._cognome}, {docente._materia}, {docente._titolo}")
-        print(f"Corso: {self._corso._dicitura}") 
+        print(f"Corso: {self._corso._dicitura}") #queste tre righe sotto le ho usate per stamparmi le specifiche del corso
         print(f"Edizione: {self._corso._edizione}") 
         print(f"Data inizio: {self._corso._dataInizio}")
         print(f"Numero iscritti: {len(self._registro)}") #conta quanti allievi ci sono nel  registro
@@ -43,7 +43,7 @@ class Tutor(Persona): #anche il tutor è una Persona
             print(f"- {a._nome} {a._cognome}: {a._orePresenza} ore")
 
 class Corso:
-    def __init__(self, dicitura, edizione, dataInizio):
+    def __init__(self, dicitura, edizione, dataInizio): #qua è tutta la parte legata al corso
         self._dicitura = dicitura
         self._edizione = edizione
         self._dataInizio = dataInizio
