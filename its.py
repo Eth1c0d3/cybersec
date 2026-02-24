@@ -33,7 +33,7 @@ class Tutor(Persona): #anche il tutor è una Persona
     def stampaRegistro(self, docente=None):
         print(f"Tutor: {self._nome} {self._cognome}") #stampa il nome del tutor usando una f-string
         if docente is not None: #esegue il blocco solo se è stato passato un docente alla funzione
-            print(f"Docente: {docente._nome} {docente._cognome}")
+            print(f"Docente: {docente._nome} {docente._cognome}, {docente._materia}, {docente._titolo}")
         print(f"Numero iscritti: {len(self._registro)}") #conta quanti allievi ci sono nel  registro
         print("Registro presenze:") 
         for a in self._registro: #accede agli attributi di ogni allievo
@@ -48,7 +48,7 @@ class Corso:
 
 program = Corso("Cyber Defence & System Administator", "2025-2027", "24/11/2025") #creo un oggetto Corso
 tu = Tutor("Cecilia", "Giacchella", program) #creo un tutor associato al corso
-doc = Docente("Andrea", "Ribuoli", "Introduzione alla programmazione e cybersecurity", "Ingegniere")
+doc = Docente("Andrea", "Ribuoli", "Laurea in Programmazione", "Ingegniere")
 
 lista_allievi = [    #è una lista di tuple, ogni tupla è (nome, cognome)
     ("Matteo", "Galeazzi"),
@@ -73,7 +73,8 @@ lista_allievi = [    #è una lista di tuple, ogni tupla è (nome, cognome)
     ("Raffaele", "Tesei"),
     ("Nicola", "Verdini"),
     ("Emanuele", "Senesi"),
-    ("Ayoub", "Hassan")
+    ("Ayoub", "Hassan"),
+    ("Chiara", "Di Luca")
 ]
 
 # Aggiunta allievi al registro 
